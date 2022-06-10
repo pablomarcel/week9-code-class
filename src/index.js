@@ -4,11 +4,35 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {combineReducers, legacy_createStore as createStore} from "redux";
+import {counterReducer, incrementAction} from "./counterStore";
+
+import {Provider} from "react-redux";
+
+//function is deprecated
+
+const store = createStore(
+    combineReducers({
+        count: counterReducer,
+    })
+)
+
+// console.log(store.getState())
+// store.dispatch(incrementAction())
+// store.dispatch(incrementAction())
+// store.dispatch(incrementAction())
+// console.log(store.getState())
+// store.subscribe(()=> console.log(store.getState()))
+
+
+//can also have asynchronous actions
+//
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
